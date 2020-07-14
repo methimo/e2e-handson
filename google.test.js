@@ -10,31 +10,7 @@ describe("Googleでpuppeteerを検索してリポジトリにアクセスする"
   });
 
   test("検索ワードを入力", async () => {
-    await expect(page).toFill('input[name="q"]', "puppeteer");
+    await expect(page).toFill('input[name="q"]', "puppeteeeeeeer");
     await page.screenshot({ path: "screenshots/2.png", fullPage: true });
-  });
-
-  test("検索ボタンを押して結果表示", async () => {
-    await Promise.all([
-      expect(page).toClick('input[name="btnK"]'),
-      page.waitForNavigation(),
-    ]);
-    // id=searchの要素が画面にあることをチェック
-    await expect(page).toMatchElement("#search");
-    // id=result-statsの要素に`約 5,880,000 件`と表示されていることをチェック(件数はテストが通るように書き換えてください)
-    // await expect(page).toMatchElement("#result-stats", {
-    //   text: "約 6,630,000 件",
-    //  });
-    await page.screenshot({ path: "screenshots/3.png", fullPage: true });
-  });
-
-  test("Puppeteerのリポジトリを選択して遷移", async () => {
-    await Promise.all([
-      expect(page).toClick('a[href="https://github.com/puppeteer/puppeteer"]'),
-      page.waitForNavigation(),
-    ]);
-    // `puppeteer/puppeteer`という文字列が画面上にあることをチェック
-    await expect(page).toMatch("puppeteer/puppeteer");
-    await page.screenshot({ path: "screenshots/4.png", fullPage: true });
   });
 });
